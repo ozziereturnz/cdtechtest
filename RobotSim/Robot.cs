@@ -12,7 +12,12 @@
 
         public void Place(int x, int y, Facing facing)
         {
-            // TODO
+            if ( x < 0 || x > MAX_X || y < 0 || y > MAX_Y) return; // Invalid placement, ignore.
+
+            this.X = x;
+            this.Y = y;
+            this.Facing = facing;
+            this.Placed = true;
         }
 
         public void Move()
