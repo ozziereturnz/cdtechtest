@@ -45,6 +45,39 @@ namespace RobotSimTest
             Assert.AreEqual(robot.Facing, default(Facing), "Facing has changed.");
         }
 
+        [TestMethod]
+        public void Place_Replace() {
+            int expectedX = 2;
+            int expectedY = 3;
+            Facing expectedFacing = Facing.South;
+
+            Robot robot = new Robot();
+            robot.Place(0, 0, Facing.North);
+            robot.Place(expectedX, expectedY, expectedFacing);
+            
+            Assert.IsTrue(robot.Placed, "Robot is not placed.");
+            Assert.AreEqual(robot.X, expectedX, "X position is incorrect.");
+            Assert.AreEqual(robot.Y, expectedY, "Y position is incorrect.");
+            Assert.AreEqual(robot.Facing, expectedFacing, "Facing is incorrect.");
+        }
+
+        [TestMethod]
+        public void Place_InvalidReplace() {
+            int expectedX = 4;
+            int expectedY = 1;
+            Facing expectedFacing = Facing.West;
+
+            Robot robot = new Robot();
+            robot.Place(expectedX, expectedY, expectedFacing);
+            robot.Place(int.MinValue, 0, Facing.North);
+            
+            Assert.IsTrue(robot.Placed, "Robot is not placed.");
+            Assert.AreEqual(robot.X, expectedX, "X position is incorrect.");
+            Assert.AreEqual(robot.Y, expectedY, "Y position is incorrect.");
+            Assert.AreEqual(robot.Facing, expectedFacing, "Facing is incorrect.");
+        }
+
+        [TestMethod]
         public void Move_North()
         {
             int expected = 1;
@@ -56,6 +89,7 @@ namespace RobotSimTest
             Assert.AreEqual(robot.Y, expected, "Robot did not move North.");
         }
 
+        [TestMethod]
         public void Move_South()
         {
             int expected = 3;
@@ -67,6 +101,7 @@ namespace RobotSimTest
             Assert.AreEqual(robot.Y, expected, "Robot did not move South.");
         }
 
+        [TestMethod]
         public void Move_East()
         {
             int expected = 2;
@@ -78,6 +113,7 @@ namespace RobotSimTest
             Assert.AreEqual(robot.Y, 1, "Robot moved incorrectly.");
         }
 
+        [TestMethod]
         public void Move_West()
         {
             int expected = 0;
@@ -89,6 +125,7 @@ namespace RobotSimTest
             Assert.AreEqual(robot.Y, 4, "Robot moved incorrectly.");
         }
 
+        [TestMethod]
         public void Move_WithoutPlace()
         {
             Robot robot = new Robot();
