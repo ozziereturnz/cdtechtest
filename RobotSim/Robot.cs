@@ -51,7 +51,8 @@
 
         public void Left()
         {
-            // TODO
+            if (this.Facing == Facing.North) this.Facing = Facing.West;
+            else this.Facing--;
         }
 
         public void Right()
