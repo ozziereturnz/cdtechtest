@@ -22,7 +22,31 @@
 
         public void Move()
         {
-            // TODO
+            if (!this.Placed) return; // Cannot move if not placed
+
+            switch(this.Facing)
+            {
+                case Facing.North:
+                {
+                    this.Y += this.Y < MAX_Y ? 1 : 0;
+                    break;
+                }
+                case Facing.South:
+                {
+                    this.Y -= this.Y > 0 ? 1 : 0;
+                    break;
+                }
+                case Facing.East:
+                {
+                    this.X += this.X < MAX_X ? 1 : 0;
+                    break;
+                }
+                case Facing.West:
+                {
+                    this.X -= this.X > 0 ? 1 : 0;
+                    break;
+                }
+            }
         }
 
         public void Left()

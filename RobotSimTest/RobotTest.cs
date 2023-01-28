@@ -9,6 +9,7 @@ namespace RobotSimTest
         private const int MAX_X = 4;
         private const int MAX_Y = 4;
 
+        #region Place Tests
         [DataTestMethod]
         [DataRow(0, 0, 0)] // Min values
         [DataRow(1, 3, 1)]
@@ -76,7 +77,9 @@ namespace RobotSimTest
             Assert.AreEqual(robot.Y, expectedY, "Y position is incorrect.");
             Assert.AreEqual(robot.Facing, expectedFacing, "Facing is incorrect.");
         }
+        #endregion
 
+        #region Move Tests
         [TestMethod]
         public void Move_North()
         {
@@ -153,5 +156,6 @@ namespace RobotSimTest
             Assert.AreEqual(robot.X, x, "X position changed.");
             Assert.AreEqual(robot.Y, y, "Y position changed.");
         }
+        #endregion
     }
 }
