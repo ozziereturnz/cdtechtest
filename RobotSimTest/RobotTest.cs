@@ -173,5 +173,21 @@ namespace RobotSimTest
             Assert.AreEqual(robot.Facing, expected, "Robot facing wrong direction.");
         }
         #endregion
+        
+        #region Right Tests
+        [DataTestMethod]
+        [DataRow(Facing.North, Facing.East)]
+        [DataRow(Facing.West, Facing.North)]
+        [DataRow(Facing.South, Facing.West)]
+        [DataRow(Facing.East, Facing.South)]
+        public void Right_Turns(Facing initial, Facing expected)
+        {
+            Robot robot = new Robot();
+            robot.Place(0, 0, initial);
+            robot.Right();
+
+            Assert.AreEqual(robot.Facing, expected, "Robot facing wrong direction.");
+        }
+        #endregion
     }
 }
