@@ -57,7 +57,8 @@
 
         public void Right()
         {
-            // TODO
+            if (this.Facing == Facing.West) this.Facing = Facing.North;
+            else this.Facing++;
         }
 
         public Tuple<int, int, Facing> Report()
