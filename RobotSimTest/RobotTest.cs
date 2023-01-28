@@ -21,9 +21,9 @@ namespace RobotSimTest
             robot.Place(x, y, facing);
 
             Assert.IsTrue(robot.Placed, "Robot is not placed.");
-            Assert.AreEqual(robot.X, x, "X position is incorrect.");
-            Assert.AreEqual(robot.Y, y, "Y position is incorrect.");
-            Assert.AreEqual(robot.Facing, facing, "Facing is incorrect.");
+            Assert.AreEqual(x, robot.X, "X position is incorrect.");
+            Assert.AreEqual(y, robot.Y, "Y position is incorrect.");
+            Assert.AreEqual(facing, robot.Facing, "Facing is incorrect.");
         }
 
         [DataTestMethod]
@@ -41,9 +41,9 @@ namespace RobotSimTest
             robot.Place(x, y, facing);
 
             Assert.IsFalse(robot.Placed, "Robot is placed.");
-            Assert.AreEqual(robot.X, default(int), "X position has changed.");
-            Assert.AreEqual(robot.Y, default(int), "Y position has changed.");
-            Assert.AreEqual(robot.Facing, default(Facing), "Facing has changed.");
+            Assert.AreEqual(default(int), robot.X, "X position has changed.");
+            Assert.AreEqual(default(int), robot.Y, "Y position has changed.");
+            Assert.AreEqual(default(Facing), robot.Facing, "Facing has changed.");
         }
 
         [TestMethod]
@@ -57,9 +57,9 @@ namespace RobotSimTest
             robot.Place(expectedX, expectedY, expectedFacing);
             
             Assert.IsTrue(robot.Placed, "Robot is not placed.");
-            Assert.AreEqual(robot.X, expectedX, "X position is incorrect.");
-            Assert.AreEqual(robot.Y, expectedY, "Y position is incorrect.");
-            Assert.AreEqual(robot.Facing, expectedFacing, "Facing is incorrect.");
+            Assert.AreEqual(expectedX, robot.X, "X position is incorrect.");
+            Assert.AreEqual(expectedY, robot.Y, "Y position is incorrect.");
+            Assert.AreEqual(expectedFacing, robot.Facing, "Facing is incorrect.");
         }
 
         [TestMethod]
@@ -73,9 +73,9 @@ namespace RobotSimTest
             robot.Place(int.MinValue, 0, Facing.North);
             
             Assert.IsTrue(robot.Placed, "Robot is not placed.");
-            Assert.AreEqual(robot.X, expectedX, "X position is incorrect.");
-            Assert.AreEqual(robot.Y, expectedY, "Y position is incorrect.");
-            Assert.AreEqual(robot.Facing, expectedFacing, "Facing is incorrect.");
+            Assert.AreEqual(expectedX, robot.X, "X position is incorrect.");
+            Assert.AreEqual(expectedY, robot.Y, "Y position is incorrect.");
+            Assert.AreEqual(expectedFacing, robot.Facing, "Facing is incorrect.");
         }
         #endregion
 
@@ -88,8 +88,8 @@ namespace RobotSimTest
             robot.Place(0, 0, Facing.North);
             robot.Move();
 
-            Assert.AreEqual(robot.X, 0, "Robot moved incorrectly.");
-            Assert.AreEqual(robot.Y, expected, "Robot did not move North.");
+            Assert.AreEqual(0, robot.X, "Robot moved incorrectly.");
+            Assert.AreEqual(expected, robot.Y, "Robot did not move North.");
         }
 
         [TestMethod]
@@ -100,8 +100,8 @@ namespace RobotSimTest
             robot.Place(3, MAX_Y, Facing.South);
             robot.Move();
 
-            Assert.AreEqual(robot.X, 3, "Robot moved incorrectly.");
-            Assert.AreEqual(robot.Y, expected, "Robot did not move South.");
+            Assert.AreEqual(3, robot.X, "Robot moved incorrectly.");
+            Assert.AreEqual(expected, robot.Y, "Robot did not move South.");
         }
 
         [TestMethod]
@@ -112,8 +112,8 @@ namespace RobotSimTest
             robot.Place(1, 1, Facing.East);
             robot.Move();
 
-            Assert.AreEqual(robot.X, expected, "Robot did not move East.");
-            Assert.AreEqual(robot.Y, 1, "Robot moved incorrectly.");
+            Assert.AreEqual(expected, robot.X, "Robot did not move East.");
+            Assert.AreEqual(1, robot.Y, "Robot moved incorrectly.");
         }
 
         [TestMethod]
@@ -124,8 +124,8 @@ namespace RobotSimTest
             robot.Place(1, MAX_Y, Facing.West);
             robot.Move();
 
-            Assert.AreEqual(robot.X, expected, "Robot did not move West.");
-            Assert.AreEqual(robot.Y, 4, "Robot moved incorrectly.");
+            Assert.AreEqual(expected, robot.X, "Robot did not move West.");
+            Assert.AreEqual(4, robot.Y, "Robot moved incorrectly.");
         }
 
         [TestMethod]
@@ -134,8 +134,8 @@ namespace RobotSimTest
             Robot robot = new Robot();
             robot.Move();
 
-            Assert.AreEqual(robot.X, default(int), "X position has changed.");
-            Assert.AreEqual(robot.Y, default(int), "Y position has changed.");
+            Assert.AreEqual(default(int), robot.X, "X position has changed.");
+            Assert.AreEqual(default(int), robot.Y, "Y position has changed.");
         }
 
         [DataTestMethod]
@@ -153,8 +153,8 @@ namespace RobotSimTest
             robot.Place(x, y, facing);
             robot.Move();
 
-            Assert.AreEqual(robot.X, x, "X position changed.");
-            Assert.AreEqual(robot.Y, y, "Y position changed.");
+            Assert.AreEqual(x, robot.X, "X position changed.");
+            Assert.AreEqual(y, robot.Y, "Y position changed.");
         }
         #endregion
 
@@ -170,7 +170,16 @@ namespace RobotSimTest
             robot.Place(0, 0, initial);
             robot.Left();
 
-            Assert.AreEqual(robot.Facing, expected, "Robot facing wrong direction.");
+            Assert.AreEqual(expected, robot.Facing, "Robot facing wrong direction.");
+        }
+
+        [TestMethod]
+        public void Left_NotPlaced()
+        {
+            Robot robot = new Robot();
+            robot.Left();
+
+            Assert.AreEqual(default(Facing), robot.Facing, "Robot has turned.");
         }
         #endregion
         
@@ -186,8 +195,21 @@ namespace RobotSimTest
             robot.Place(0, 0, initial);
             robot.Right();
 
-            Assert.AreEqual(robot.Facing, expected, "Robot facing wrong direction.");
+            Assert.AreEqual(expected, robot.Facing, "Robot facing wrong direction.");
         }
+
+        [TestMethod]
+        public void Right_NotPlaced()
+        {
+            Robot robot = new Robot();
+            robot.Right();
+
+            Assert.AreEqual(default(Facing), robot.Facing, "Robot has turned.");
+        }
+        #endregion
+
+        #region Report Tests
+
         #endregion
     }
 }

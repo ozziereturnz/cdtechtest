@@ -51,12 +51,16 @@
 
         public void Left()
         {
+            if (!this.Placed) return; // Cannot turn if not placed
+
             if (this.Facing == Facing.North) this.Facing = Facing.West;
             else this.Facing--;
         }
 
         public void Right()
         {
+            if (!this.Placed) return; // Cannot turn if not placed
+
             if (this.Facing == Facing.West) this.Facing = Facing.North;
             else this.Facing++;
         }
