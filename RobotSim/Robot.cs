@@ -67,7 +67,9 @@
 
         public void Report()
         {
-            // TODO
+            if (!this.Placed) return; // Cannot report if not placed
+
+            Console.WriteLine($"{this.X}, {this.Y}, {this.Facing}");
         }
     }
 }
