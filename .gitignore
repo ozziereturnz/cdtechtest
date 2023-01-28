@@ -1,3 +1,6 @@
 # Build results
 */[Bb]in/
 */[Oo]bj/
+
+# Test results
+*/[Tt]est[Rr]esults/
