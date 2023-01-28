@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Text;
 using RobotSim;
 
 namespace RobotSimTest
@@ -209,7 +210,59 @@ namespace RobotSimTest
         #endregion
 
         #region Report Tests
+        [TestMethod]
+        public void Report_IntialValues()
+        {
+            StringBuilder output = new StringBuilder();
+            Console.SetOut(new StringWriter(output));
 
+            int expectedX = 1;
+            int expectedY = 2;
+            Facing expectedFacing = Facing.South;
+
+            Robot robot = new Robot();
+            robot.Place(expectedX, expectedY, expectedFacing);
+            robot.Report();
+
+            Assert.IsTrue(output.ToString().Contains($"{expectedX}, {expectedY}, {expectedFacing}"), "Output does not contain correct report.");
+        }
+
+        [TestMethod]
+        public void Report_Unplaced()
+        {
+            StringBuilder output = new StringBuilder();
+            Console.SetOut(new StringWriter(output));
+
+            Robot robot = new Robot();
+            robot.Report();
+
+            Assert.AreEqual(string.Empty, output.ToString(), "Output contains a report.");
+        }
+
+        [TestMethod]
+        public void Report_AfterCommands()
+        {
+            StringBuilder output = new StringBuilder();
+            Console.SetOut(new StringWriter(output));
+
+            int expectedX = 2;
+            int expectedY = 3;
+            Facing expectedFacing = Facing.West;
+
+            Robot robot = new Robot();
+            robot.Place(0, 0, Facing.North);
+            robot.Move();
+            robot.Move();
+            robot.Move();
+            robot.Right();
+            robot.Move();
+            robot.Move();
+            robot.Left();
+            robot.Left();
+            robot.Report();
+
+            Assert.IsTrue(output.ToString().Contains($"{expectedX}, {expectedY}, {expectedFacing}"), "Output does not contain correct report.");
+        }
         #endregion
     }
 }

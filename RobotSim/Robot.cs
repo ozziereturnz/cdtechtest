@@ -65,10 +65,9 @@
             else this.Facing++;
         }
 
-        public Tuple<int, int, Facing> Report()
+        public void Report()
         {
             // TODO
-            return new Tuple<int, int, Facing>(0, 0, 0);
         }
     }
 }
