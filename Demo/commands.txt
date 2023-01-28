@@ -1,0 +1,37 @@
+invalid
+move
+move
+left
+right
+report
+blah
+place 
+place sdasd
+place 0, 3, South
+move
+report
+right
+move
+move
+right
+move
+move
+move
+report
+place 0,0,1
+move
+move
+move
+move
+move
+move
+move
+report
+left
+move
+move
+move
+move
+move
+move
+report
